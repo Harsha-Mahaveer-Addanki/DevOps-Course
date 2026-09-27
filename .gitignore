@@ -1,0 +1,14 @@
+configs/*.env
+configs/secret.txt
+
+logs/
+*.log
+
+__pycache__/
+*.py[cod]
+
+.venv/
+venc/
+
+.DS_Store
+*.swp
