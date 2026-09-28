@@ -18,6 +18,17 @@ pipeline {
 			}
 		}
 
+		stage('Test web container') {
+			steps {
+				sh '''
+					docker run -d --name jenkins-web-test -p 8081:80 devops-course-web:jenkins
+					curl --fail http://localhost:8081
+					docker rm -f jenkins-web-test
+				'''
+			}
+		}
+
+
 		stage('System Info') {
 			steps {
 				sh 'uname -a'
