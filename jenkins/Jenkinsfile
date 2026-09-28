@@ -2,9 +2,11 @@ pipeline {
 	agent any
 
 	stages {
-		stage('Hello') {
+		stage('Validate') {
 			steps {
-				sh 'echo "Hello from Jenkins Pipeline"'
+				sh 'test -f docker-basics/Dockerfile'
+				sh 'test -f docker-basics/Dockerfile.app'
+				echo 'Dockerfiles found succesfully'
 			}
 		}
 
@@ -14,4 +16,4 @@ pipeline {
 			}
 		}
 	}
-}	
+}
