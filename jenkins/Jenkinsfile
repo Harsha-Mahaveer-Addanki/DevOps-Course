@@ -6,7 +6,15 @@ pipeline {
 			steps {
 				sh 'test -f docker-basics/Dockerfile'
 				sh 'test -f docker-basics/Dockerfile.app'
-				echo 'Dockerfiles found succesfully'
+				echo 'Dockerfiles found successfully'
+			}
+		}
+
+
+		stage('Build Docker Images') {
+			steps {
+				sh 'docker build -t devops-course-web:jenkins -f docker-basics/Dockerfile docker-basics'
+				sh 'docker build -t devops-course-app:jenkins -f docker-basics/Dockerfile.app docker-basics'
 			}
 		}
 
