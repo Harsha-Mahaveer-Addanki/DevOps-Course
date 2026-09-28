@@ -1,0 +1,27 @@
+name : CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Validate Dockerfiles
+        run: |
+          test -f docker-basics/Dockerfile
+          test -f docker-basics/Dockerfile.app
+
+      - name: Build Web image
+        run: docker build -t devops-course-web:ci docker-basics
+
+      - name: Build app image
+        run: docker build -f docker-basics/Dockerfile.app -t devops-course-app:ci docker-basics
