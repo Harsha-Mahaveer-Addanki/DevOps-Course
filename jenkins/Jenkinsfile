@@ -31,6 +31,14 @@ pipeline {
 		}
 
 
+		stage('Security Check') {
+			steps {
+				sh 'grep -q "^FROM alpine:3.24.2" docker-basics/Dockerfile.app'
+				sh 'grep -q "^USER appuser" docker-basics/Dockerfile.app'
+				echo 'Basic Docker security checks passed'
+			}
+		}
+
 		stage('System Info') {
 			steps {
 				sh 'uname -a'
