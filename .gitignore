@@ -12,3 +12,5 @@ venc/
 
 .DS_Store
 *.swp
+
+**/.env

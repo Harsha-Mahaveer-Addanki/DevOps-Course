@@ -1,0 +1,42 @@
+services:
+  web:
+    image: devops-course-web:v2
+    container_name: devops-course-web
+    ports:
+      - "8080:80"
+
+  app:
+    image: devops-course-app:v1
+    container_name: devops-course-app
+    
+    environment:
+      APP_ENV: development
+      APP_VERSION: "2"
+
+    volumes:
+      - devops-data:/data
+
+  db:
+    image: postgres:16-alpine
+    container_name: devops-course-db
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  devops-data:
+    external: true
+
+  postgres-data:
