@@ -8,7 +8,7 @@ on:
 
 
 permissions:
-  content: read
+  contents: read
   packages: write
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
       - name: Test web Application
         run: curl --fail http://localhost:8080
 
-      - name: Tag web page
+      - name: Tag web image
         run: docker tag devops-course-web:ci ghcr.io/${{ github.repository_owner }}/devops-course-web:latest
 
       - name: Push web image
