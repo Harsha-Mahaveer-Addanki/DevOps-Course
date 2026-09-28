@@ -1,4 +1,4 @@
-name : CI
+name: CI
 
 on:
   push:
@@ -22,6 +22,15 @@ jobs:
 
       - name: Build Web image
         run: docker build -t devops-course-web:ci docker-basics
+
+      - name: Run web container
+        run: docker run -d --name ci-web -p 8080:80 devops-course-web:ci
+
+      - name: Test web Application
+        run: curl --fail http://localhost:8080
+
+      - name: Stop web container
+        run: docker rm -f ci-web
 
       - name: Build app image
         run: docker build -f docker-basics/Dockerfile.app -t devops-course-app:ci docker-basics
