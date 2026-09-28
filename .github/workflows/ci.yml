@@ -41,10 +41,10 @@ jobs:
         run: curl --fail http://localhost:8080
 
       - name: Tag web image
-        run: docker tag devops-course-web:ci ghcr.io/${{ github.repository_owner }}/devops-course-web:latest
+        run: docker tag devops-course-web:ci ghcr.io/${{ github.repository_owner }}/DevOps-Course/devops-course-web:latest
 
       - name: Push web image
-        run: docker push ghcr.io/${{ github.repository_owner }}/devops-course-web:latest
+        run: docker push ghcr.io/${{ github.repository_owner }}/DevOps-Course/devops-course-web:latest
 
       - name: Stop web container
         run: docker rm -f ci-web
