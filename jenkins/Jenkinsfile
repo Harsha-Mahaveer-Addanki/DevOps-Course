@@ -57,10 +57,10 @@ pipeline {
 							--password-stdin
 
 						docker tag devops-course-web:jenkins \
-							ghcr.io/harsha-mahaveer-addanki/devops-course/devops-course-web:jenkins
+							ghcr.io/harsha-mahaveer-addanki/devops-course/devops-course-web:jenkins-${BUILD_NUMBER}
 
 						docker push \
-							ghcr.io/harsha-mahaveer-addanki/devops-course/devops-course-web:jenkins
+							ghcr.io/harsha-mahaveer-addanki/devops-course/devops-course-web:jenkins-${BUILD_NUMBER}
 
 						docker logout ghcr.io
 					'''
